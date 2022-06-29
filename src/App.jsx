@@ -1,44 +1,75 @@
-import { useState } from 'react'
-import logo from './logo.svg'
 import './App.css'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  // Global theme config
+  const THEME = createTheme({
+    typography: {
+      fontFamily: ['Roboto Flex', 'sans-serif'].join(','),
+    },
+  })
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <ThemeProvider theme={THEME}>
+      <BrowserRouter>
+        <Routes>
+          {/* People */}
+          <Route path="/people">
+            <Route index element={<>People page</>} />
+          </Route>
+
+          {/* Skills */}
+          <Route path="/skills">
+            <Route index element={<>Skills page</>} />
+          </Route>
+
+          {/* Challenges */}
+          <Route path="/challenges">
+            <Route index element={<>Challenges page</>} />
+          </Route>
+
+          {/* Top */}
+          <Route path="/top">
+            <Route index element={<>Top page</>} />
+          </Route>
+
+          {/* Post */}
+          <Route path="/m/:postId">
+            <Route index element={<>Post page</>} />
+          </Route>
+
+          {/* Profile */}
+          <Route path="/u/:userName">
+            <Route index element={<>Profile page</>} />
+            <Route path="saved" element={<>saved page</>} />
+            <Route path="settings" element={<>Settings page</>} />
+          </Route>
+
+          {/* Search */}
+          <Route path="/search">
+            <Route index element={<>Search page</>} />
+          </Route>
+
+          {/* onboard */}
+          <Route path="/onboard">
+            <Route index element={<>Login| Signup page</>} />
+            <Route
+              path="setup-account"
+              element={<>Setup account page onboard</>}
+            />
+          </Route>
+
+          {/* Home page */}
+          <Route path="/">
+            <Route index element={<>Index page</>} />
+          </Route>
+
+          {/* 404 page */}
+          <Route path="*" element={<>404 page not found</>} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   )
 }
 
