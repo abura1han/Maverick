@@ -40,3 +40,23 @@
 button {
   font-size: calc(10px + 2vmin);
 }
+
+/* .carousel {
+  -webkit-scrollbar: ;
+  -webkit-scrollbar-track { background: 'red' },
+} */
+
+.carousel::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.carousel::-webkit-scrollbar-track {
+  background-color: #e8edf3;
+  border-radius: 8px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+  background-color: #9b27b04d;
+  border-radius: 8px;
+}
